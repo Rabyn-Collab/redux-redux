@@ -6,6 +6,7 @@ import About from './pages/About'
 import NotFound from './pages/NotFound'
 import HomePage from './pages/HomePage'
 import Detail from './pages/Detail'
+import DetailById from './pages/DetailById'
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
         <Route path='/' element={<HomePage />} />
         <Route path='about' element={<About />} />
         <Route path='detail' element={<Detail />} />
+        <Route path='detail/:id' element={<DetailById />} />
         <Route path='*' element={<NotFound />} />
 
       </Route>

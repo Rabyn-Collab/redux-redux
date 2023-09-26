@@ -23,3 +23,8 @@ export const mealData = [
     "idMeal": "52819"
   }
 ];
+
+
+export const getDataById = (id) => {
+  return mealData.find((meal) => meal.idMeal === id);
+}

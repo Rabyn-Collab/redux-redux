@@ -11,7 +11,7 @@ const Detail = () => {
 
   const { age, name } = person;
   const { state } = useLocation();
-  console.log(state);
+
   const data = {
     state: {
       strMeal: 'Cajun'

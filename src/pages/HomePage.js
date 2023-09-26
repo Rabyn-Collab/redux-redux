@@ -10,14 +10,17 @@ const HomePage = () => {
 
 
   return (
-    <div>
+    <div className='p-5'>
 
       <div className='space-y-2'>
 
 
         {mealData.map((meal, i) => {
-          return <div onClick={() => nav('/detail', { state: meal })} className='cursor-pointer' key={i}  >
-            <img className='h-[200px]' src={meal.strMealThumb} alt="" />
+          return <div className='cursor-pointer' key={i} >
+
+            <button onClick={() => nav(`/detail/${meal.idMeal}`)} className='bg-purple-700 text-white my-4 px-2 py-1 rounded-sm hover:bg-pink-600'>Click To Pass ID</button>
+
+            <img onClick={() => nav('/detail', { state: meal })} className='h-[200px]' src={meal.strMealThumb} alt="" />
           </div>
         })}
 
