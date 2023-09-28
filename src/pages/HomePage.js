@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { mealData } from '../dummy/data_logic'
 import { useNavigate } from 'react-router'
 
@@ -6,13 +6,25 @@ import { useNavigate } from 'react-router'
 const HomePage = () => {
 
   const nav = useNavigate();
+  const [todo, setTodo] = useState('');
 
 
 
   return (
     <div className='p-5'>
 
-      <div className='space-y-2'>
+      <form onSubmit={handleSubmit} className='space-y-3'>
+        <input onChange={(e) => setTodo(e.target.value)} type="text" className='border-2 border-black' />
+        <br />
+
+        <button className='bg-black text-white px-2 py-1' type='submit'>Submit</button>
+
+      </form>
+
+
+
+
+      {/* <div className='space-y-2'>
 
 
         {mealData.map((meal, i) => {
@@ -25,9 +37,8 @@ const HomePage = () => {
         })}
 
       </div>
+ */}
 
-
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur, consectetur deserunt. Atque magnam porro nam soluta nihil voluptatum consequatur quod adipisci, facilis vel sint laborum velit blanditiis nulla voluptatibus cupiditate minus in suscipit dolorum alias eos veritatis numquam. Itaque dolorum nulla expedita magnam exercitationem recusandae odio neque similique atque tempore.</p>
 
     </div>
   )

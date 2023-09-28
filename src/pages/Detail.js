@@ -4,19 +4,9 @@ import { useLocation } from 'react-router'
 const Detail = () => {
 
 
-  const person = {
-    name: 'lio',
-    age: 90
-  };
-
-  const { age, name } = person;
   const { state } = useLocation();
 
-  const data = {
-    state: {
-      strMeal: 'Cajun'
-    }
-  };
+
   return (
     <div className='p-4 space-y-4'>
 
