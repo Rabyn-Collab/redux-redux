@@ -6,25 +6,14 @@ import { useNavigate } from 'react-router'
 const HomePage = () => {
 
   const nav = useNavigate();
-  const [todo, setTodo] = useState('');
-
 
 
   return (
     <div className='p-5'>
 
-      <form onSubmit={handleSubmit} className='space-y-3'>
-        <input onChange={(e) => setTodo(e.target.value)} type="text" className='border-2 border-black' />
-        <br />
-
-        <button className='bg-black text-white px-2 py-1' type='submit'>Submit</button>
-
-      </form>
 
 
-
-
-      {/* <div className='space-y-2'>
+      <div className='space-y-2'>
 
 
         {mealData.map((meal, i) => {
@@ -37,7 +26,7 @@ const HomePage = () => {
         })}
 
       </div>
- */}
+
 
 
     </div>
