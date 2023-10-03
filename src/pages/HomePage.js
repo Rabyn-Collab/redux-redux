@@ -1,33 +1,31 @@
-import React, { useState } from 'react'
-import { mealData } from '../dummy/data_logic'
-import { useNavigate } from 'react-router'
 
+import useApi from '../hooks/useApi';
 
 const HomePage = () => {
 
-  const nav = useNavigate();
+  const [data, err, load] = useApi('https://www.themealdb.com/api/json/v1/1/categories.php');
+
+
+  if (load) {
+    return <h1>Loading....</h1>
+  }
+
+  if (err) {
+    return `${err}`
+  }
 
 
   return (
-    <div className='p-5'>
+    <div>
 
 
-
-      <div className='space-y-2'>
-
-
-        {mealData.map((meal, i) => {
-          return <div className='cursor-pointer' key={i} >
-
-            <button onClick={() => nav(`/detail/${meal.idMeal}`)} className='bg-purple-700 text-white my-4 px-2 py-1 rounded-sm hover:bg-pink-600'>Click To Pass ID</button>
-
-            <img onClick={() => nav('/detail', { state: meal })} className='h-[200px]' src={meal.strMealThumb} alt="" />
-          </div>
-        })}
-
-      </div>
-
-
+      {data && data.categories.map((cata, i) => {
+        return <div key={i}>
+          <h1>{cata.strCategory}</h1>
+          <img src={cata.strCategoryThumb} alt="" />
+          <p>{cata.strCategoryDescription}</p>
+        </div>
+      })}
 
     </div>
   )

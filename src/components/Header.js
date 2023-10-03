@@ -10,6 +10,7 @@ const Header = () => {
 
       <nav className='space-x-4'>
         <NavLink to='/about'>About</NavLink>
+        <NavLink to='/random'>Random</NavLink>
         <NavLink to='/'>Contact</NavLink>
       </nav>
 
