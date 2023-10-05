@@ -23,7 +23,7 @@ const Header = () => {
 
       <div className='hidden sm:flex'>
         <button onClick={toggle} className='text-white '>
-          {show ? <i class="fa-solid fa-xmark fa-xl"></i> : <i className="fa-solid fa-bars fa-xl"></i>} </button>
+          {show ? <i className="fa-solid fa-xmark fa-xl"></i> : <i className="fa-solid fa-bars fa-xl"></i>} </button>
       </div>
 
 
