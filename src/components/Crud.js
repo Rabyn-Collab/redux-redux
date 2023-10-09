@@ -33,7 +33,11 @@ const Crud = () => {
       username: '',
       email: '',
       gender: '',
-      habits: []
+      habits: [],
+      country: '',
+      msg: '',
+      imageFile: null,
+      imageReview: ''
     },
     onSubmit: (val) => {
       console.log(val);
@@ -86,20 +90,45 @@ const Crud = () => {
 
           <div className='space-y-3'>
             <p>Select Your Country</p>
-            <Select label="Select Version">
-              <Option>Nepal</Option>
-              <Option>India</Option>
-              <Option>China</Option>
+            <Select onChange={(e) => {
+              formik.setFieldValue('country', e);
+            }} label="Select Version">
+              <Option value='Nepal'>Nepal</Option>
+              <Option value='India'>India</Option>
+              <Option value='China'>China</Option>
             </Select>
           </div>
 
           <div>
-            <Textarea label="Message" />
+            <Textarea
+              // value={formik.values.msg}
+              onChange={(e) => {
+                console.log(e.target.value);
+              }}
+              label="Message" />
           </div>
 
           <div className='space-y-3'>
             <p>Select Your Image</p>
-            <Input label="Image Select" type='file' accept="image/*" />
+            <Input
+              onChange={(e) => {
+                const file = e.target.files[0];
+                formik.setFieldValue('imageFile, file');
+                // const url = URL.createObjectURL(file);
+                // console.log(url);
+
+                const reader = new FileReader();
+
+                reader.readAsDataURL(file);
+                reader.addEventListener('load', (e) => {
+
+                  formik.setFieldValue('imageReview', e.target.result);
+                })
+
+
+              }}
+              label="Image Select" type='file' accept="image/*" />
+            {formik.values.imageReview && <img src={formik.values.imageReview} alt="" />}
           </div>
 
 
