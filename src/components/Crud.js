@@ -11,6 +11,8 @@ import {
 } from "@material-tailwind/react";
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { useDispatch } from 'react-redux';
+import { addTodo } from '../features/todoSlice';
 
 const radioData = [
   { label: 'Male', value: 'male' },
@@ -29,6 +31,8 @@ const checkData = [
 
 const Crud = () => {
 
+  const dispatch = useDispatch();
+
   const crudSchema = Yup.object().shape({
     username: Yup.string().min(4).max(25).required(),
     email: Yup.string().matches(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/, 'please provide valid email').required(),
@@ -38,11 +42,11 @@ const Crud = () => {
     msg: Yup.string().min(40).max(500).required(),
 
 
-    imageFile: Yup.mixed().test('fileType', 'Invalid file type', (value) => {
-      return value && ['image/jpeg', 'image/png', 'image/jpg'].includes(value.type);
-    }).test('fileSize', 'File too large', (value) =>
-      value && value.size <= 10 * 1024 * 1024
-    )
+    // imageFile: Yup.mixed().test('fileType', 'Invalid file type', (value) => {
+    //   return value && ['image/jpeg', 'image/png', 'image/jpg'].includes(value.type);
+    // }).test('fileSize', 'File too large', (value) =>
+    //   value && value.size <= 10 * 1024 * 1024
+    // )
 
 
 
@@ -60,11 +64,11 @@ const Crud = () => {
       habits: [],
       country: '',
       msg: '',
-      imageFile: null,
+      // imageFile: null,
       imageReview: ''
     },
     onSubmit: (val) => {
-      console.log(val.imageFile);
+      dispatch(addTodo(val));
     },
     validationSchema: crudSchema
   });
