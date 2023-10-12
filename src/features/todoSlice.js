@@ -1,14 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { getTodos, setTodos } from "./local";
 
 
 const todoSlice = createSlice({
   name: 'todoSlice',
   initialState: {
-    todos: []
+    todos: getTodos()
   },
   reducers: {
     addTodo: (state, action) => {
       state.todos.push(action.payload);
+      setTodos(state.todos);
     }
   }
 });

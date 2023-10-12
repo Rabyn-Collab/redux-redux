@@ -4,10 +4,9 @@ import RootLayOut from './components/RootLayOut'
 import NotFound from './pages/NotFound'
 import HomePage from './pages/HomePage'
 import Crud from './components/Crud'
-import { useSelector } from 'react-redux'
+
 
 const App = () => {
-  const d = useSelector((store) => console.log(store.todo));
 
   return (
     <Routes>

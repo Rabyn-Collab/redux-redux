@@ -13,6 +13,8 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
 import { addTodo } from '../features/todoSlice';
+import { useNavigate } from 'react-router';
+import { nanoid } from '@reduxjs/toolkit';
 
 const radioData = [
   { label: 'Male', value: 'male' },
@@ -32,6 +34,7 @@ const checkData = [
 const Crud = () => {
 
   const dispatch = useDispatch();
+  const nav = useNavigate();
 
   const crudSchema = Yup.object().shape({
     username: Yup.string().min(4).max(25).required(),
@@ -45,7 +48,7 @@ const Crud = () => {
     // imageFile: Yup.mixed().test('fileType', 'Invalid file type', (value) => {
     //   return value && ['image/jpeg', 'image/png', 'image/jpg'].includes(value.type);
     // }).test('fileSize', 'File too large', (value) =>
-    //   value && value.size <= 10 * 1024 * 1024
+    //   value && value.size <= 4 * 1024 * 1024
     // )
 
 
@@ -65,10 +68,12 @@ const Crud = () => {
       country: '',
       msg: '',
       // imageFile: null,
-      imageReview: ''
+      imageReview: '',
+      id: nanoid()
     },
     onSubmit: (val) => {
       dispatch(addTodo(val));
+      nav(-1);
     },
     validationSchema: crudSchema
   });
@@ -156,7 +161,7 @@ const Crud = () => {
               onChange={(e) => {
                 const file = e.target.files[0];
 
-                formik.setFieldValue('imageFile', file);
+                //formik.setFieldValue('imageFile', file);
                 // const url = URL.createObjectURL(file);
                 // console.log(url);
 
