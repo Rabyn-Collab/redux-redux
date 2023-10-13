@@ -1,5 +1,5 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
+import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import {
   Button,
   Dialog,
@@ -7,24 +7,35 @@ import {
   DialogBody,
   DialogFooter,
 } from "@material-tailwind/react";
+import { removeTodo } from '../features/todoSlice';
 const HomePage = () => {
-  const d = [
-    { id: 1, title: 'hello' },
-    { id: 2, title: 'hello jee' },
-  ];
-  const m = d.filter((p) => p.id !== 1);
-  console.log(m);
+
+
+  const dispatch = useDispatch();
+
+  // const d = [
+  //   { id: 1, title: 'hello' },
+  //   { id: 2, title: 'hello jee' },
+  // ];
+
+  // d.splice(0, 1);
+
+  // console.log(d);
+
+  // const m = d.filter((p) => p.id !== 1);
+  // console.log(m);
 
 
 
   const [open, setOpen] = React.useState(false);
+  const [index, setIndex] = useState(null);
 
   const handleOpen = () => setOpen(!open);
   const { todos } = useSelector((store) => store.todo);
 
 
   return (
-    <div className='p-7 grid grid-cols-4'>
+    <div className='p-7 grid grid-cols-3 gap-7'>
 
 
       {todos.map((todo, i) => {
@@ -33,7 +44,10 @@ const HomePage = () => {
           <img src={todo.imageReview} alt="" />
           <div className='flex justify-end space-x-4'>
             <button><i className="fa-solid fa-pen-to-square fa-lg"></i></button>
-            <button onClick={handleOpen}><i className="fa-solid fa-trash fa-lg"></i></button>
+            <button onClick={() => {
+              setIndex(i);
+              handleOpen();
+            }}><i className="fa-solid fa-trash fa-lg"></i></button>
           </div>
         </div>
       })}
@@ -54,7 +68,10 @@ const HomePage = () => {
           >
             <span>Cancel</span>
           </Button>
-          <Button variant="gradient" color="green" onClick={handleOpen}>
+          <Button variant="gradient" color="green" onClick={() => {
+            handleOpen();
+            dispatch(removeTodo(index));
+          }}>
             <span>Confirm</span>
           </Button>
         </DialogFooter>
