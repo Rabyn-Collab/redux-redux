@@ -8,15 +8,20 @@ import {
   DialogFooter,
 } from "@material-tailwind/react";
 import { removeTodo } from '../features/todoSlice';
+import { useNavigate } from 'react-router';
 const HomePage = () => {
 
-
-  const dispatch = useDispatch();
 
   // const d = [
   //   { id: 1, title: 'hello' },
   //   { id: 2, title: 'hello jee' },
   // ];
+  // const update = d.map((d) => d.id === 1 ? { title: 'sio', id: 1 } : d);
+  // console.log(update);
+
+  const dispatch = useDispatch();
+  const nav = useNavigate();
+
 
   // d.splice(0, 1);
 
@@ -43,7 +48,7 @@ const HomePage = () => {
           <h1>{todo.username}</h1>
           <img src={todo.imageReview} alt="" />
           <div className='flex justify-end space-x-4'>
-            <button><i className="fa-solid fa-pen-to-square fa-lg"></i></button>
+            <button onClick={() => nav(`/update-some/${todo.id}`)}><i className="fa-solid fa-pen-to-square fa-lg"></i></button>
             <button onClick={() => {
               setIndex(i);
               handleOpen();
