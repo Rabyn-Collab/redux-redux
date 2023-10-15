@@ -78,6 +78,7 @@ const UpdateCrud = () => {
       imageReview: todo?.imageReview,
       id: todo?.id
     },
+    //submit handle
     onSubmit: (val) => {
       dispatch(updateTodo(val));
       nav(-1);
