@@ -12,9 +12,9 @@ import {
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
-import { addTodo } from '../features/todoSlice';
 import { useNavigate, useParams } from 'react-router';
-import { nanoid } from '@reduxjs/toolkit';
+import { updateTodo } from '../features/todoSlice';
+
 
 const radioData = [
   { label: 'Male', value: 'male' },
@@ -64,20 +64,22 @@ const UpdateCrud = () => {
   });
 
 
+
+
   const formik = useFormik({
     initialValues: {
       username: todo?.username,
-      email: '',
-      gender: '',
-      habits: [],
-      country: '',
-      msg: '',
+      email: todo?.email,
+      gender: todo?.gender,
+      habits: todo?.habits,
+      country: todo?.country,
+      msg: todo?.msg,
       // imageFile: null,
-      imageReview: '',
-      id: nanoid()
+      imageReview: todo?.imageReview,
+      id: todo?.id
     },
     onSubmit: (val) => {
-      dispatch(addTodo(val));
+      dispatch(updateTodo(val));
       nav(-1);
     },
     validationSchema: crudSchema
@@ -112,11 +114,10 @@ const UpdateCrud = () => {
             <div className="flex gap-6">
               {radioData.map((radio, i) => {
                 return <Radio
+                  checked={radio.value === formik.values.gender ? true : false}
                   onChange={formik.handleChange}
                   key={i} name="gender" label={radio.label} value={radio.value} />;
               })}
-
-
             </div>
             {formik.errors.gender && formik.touched.gender && <h1 className='text-pink-800'>{formik.errors.gender}</h1>}
           </div>
@@ -129,6 +130,7 @@ const UpdateCrud = () => {
 
               {checkData.map((check, i) => {
                 return <Checkbox
+                  checked={formik.values.habits.includes(check.value) ? true : false}
                   onChange={formik.handleChange}
                   key={i} name="habits" label={check.label} value={check.value} />;
               })}
@@ -140,9 +142,11 @@ const UpdateCrud = () => {
 
           <div className='space-y-3'>
             <p>Select Your Country</p>
-            <Select onChange={(e) => {
-              formik.setFieldValue('country', e);
-            }} label="Select Version">
+            <Select
+              value={formik.values.country}
+              onChange={(e) => {
+                formik.setFieldValue('country', e);
+              }} label="Select Version">
               <Option value='Nepal'>Nepal</Option>
               <Option value='India'>India</Option>
               <Option value='China'>China</Option>
@@ -160,7 +164,7 @@ const UpdateCrud = () => {
           </div>
 
           <div className='space-y-3'>
-            <p>Select Your Image</p>
+            <p>Change  Image</p>
             <Input
               name='imageFile'
               onChange={(e) => {
