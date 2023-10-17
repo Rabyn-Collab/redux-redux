@@ -1,13 +1,12 @@
 import React from 'react'
-import { useMovieByCategoryQuery } from '../features/movieApi'
+import CategoryMovie from './CategoryMovie'
 
 const HomePage = () => {
 
-  const data = useMovieByCategoryQuery('popular');
-  console.log(data);
+
   return (
     <div>
-
+      <CategoryMovie />
     </div>
   )
 }

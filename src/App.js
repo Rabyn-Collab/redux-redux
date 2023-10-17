@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router'
 import RootLayOut from './components/RootLayOut'
 import NotFound from './pages/NotFound'
 import HomePage from './pages/HomePage'
+import CategoryMovie from './pages/CategoryMovie'
 
 const App = () => {
 
@@ -10,6 +11,7 @@ const App = () => {
     <Routes>
       <Route path='/' element={<RootLayOut />} >
         <Route index element={<HomePage />} />
+        <Route path='movie/:category' element={<CategoryMovie />} />
         <Route path='*' element={<NotFound />} />
 
       </Route>

@@ -28,8 +28,9 @@ const Header = () => {
 
 
       <nav className='space-x-6 sm:hidden'>
-        <NavLink className="hover:bg-white hover:text-black hover:px-4 hover:py-1">About</NavLink>
-        <NavLink to='/add-some'>Add Some</NavLink>
+        <NavLink to='/movie/popular' className="hover:bg-white hover:text-black hover:px-4 hover:py-1">Popular</NavLink>
+        <NavLink to='/movie/top_rated'>TopRated</NavLink>
+        <NavLink to='/movie/upcoming'>Upcoming</NavLink>
       </nav>
 
     </div>
