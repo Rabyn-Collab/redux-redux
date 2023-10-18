@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { apiKey, baseUrl } from './constant';
 
 
 
@@ -6,7 +7,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const movieApi = createApi({
   reducerPath: 'movieApi',
-  baseQuery: fetchBaseQuery({ baseUrl: 'https://api.themoviedb.org/3' }),
+  baseQuery: fetchBaseQuery({ baseUrl: baseUrl }),
   endpoints: (builder) => ({
 
 
@@ -14,15 +15,32 @@ export const movieApi = createApi({
       query: (query) => ({
         url: `/movie/${query}`,
         params: {
-          api_key: '92c1e33f015755d27a231793c44ecfed'
+          api_key: apiKey
+        }
+      })
+    }),
+
+    getMovieDetail: builder.query({
+      query: (query) => ({
+        url: `/movie/${query}`,
+        params: {
+          api_key: apiKey
+        }
+      })
+    }),
+
+    videoById: builder.query({
+      query: (query) => ({
+        url: `/movie/${query}/videos`,
+        params: {
+          api_key: apiKey
         }
       })
     }),
 
 
 
-
   })
 });
 
-export const { useMovieByCategoryQuery } = movieApi;
+export const { useMovieByCategoryQuery, useVideoByIdQuery, useGetMovieDetailQuery } = movieApi;
