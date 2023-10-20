@@ -1,15 +1,15 @@
 import React from 'react'
-import { useNavigate, useParams } from 'react-router'
-import { useMovieByCategoryQuery } from '../features/movieApi';
-import Loading from '../components/Loading';
+import { useSearchMovieQuery } from '../../features/movieApi';
+import Loading from '../../components/Loading';
 import { Image, Shimmer } from 'react-shimmer'
-import ErrorPage from '../components/ErrorPage';
+import { useNavigate, useParams } from 'react-router';
+import ErrorPage from '../../components/ErrorPage';
+const SearchPage = () => {
 
-const CategoryMovie = () => {
-  const { category } = useParams();
+  const { query } = useParams();
   const nav = useNavigate();
 
-  const { isLoading, isError, error, data } = useMovieByCategoryQuery(category ?? 'now_playing');
+  const { isLoading, isError, error, data } = useSearchMovieQuery(query);
   if (isLoading) {
     return <Loading />
   }
@@ -17,7 +17,6 @@ const CategoryMovie = () => {
   if (isError) {
     return <ErrorPage error={error} />
   }
-
 
   return (
     <div className='grid grid-cols-3 p-5 gap-5'>
@@ -36,4 +35,4 @@ const CategoryMovie = () => {
   )
 }
 
-export default CategoryMovie
+export default SearchPage
