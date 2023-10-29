@@ -15,7 +15,17 @@ export const movieApi = createApi({
       query: (query) => ({
         url: `/movie/${query}`,
         params: {
-          api_key: apiKey
+          api_key: apiKey,
+        }
+      })
+    }),
+
+    movieByPage: builder.query({
+      query: (query) => ({
+        url: `/movie/${query.category}`,
+        params: {
+          api_key: apiKey,
+          page: query.page
         }
       })
     }),
@@ -52,4 +62,4 @@ export const movieApi = createApi({
   })
 });
 
-export const { useMovieByCategoryQuery, useVideoByIdQuery, useGetMovieDetailQuery, useSearchMovieQuery } = movieApi;
+export const { useMovieByCategoryQuery, useVideoByIdQuery, useGetMovieDetailQuery, useSearchMovieQuery, useMovieByPageQuery } = movieApi;
