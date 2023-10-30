@@ -10,6 +10,8 @@ const SearchPage = () => {
   const nav = useNavigate();
 
   const { isLoading, isError, error, data } = useSearchMovieQuery(query);
+
+
   if (isLoading) {
     return <Loading />
   }
@@ -18,6 +20,9 @@ const SearchPage = () => {
     return <ErrorPage error={error} />
   }
 
+  if (data.results.length === 0) {
+    return <h1 className='text-pink-400 text-xl p-5'>Try Using Another KeyWord</h1>
+  }
   return (
     <div className='grid grid-cols-3 p-5 gap-5'>
       {data && data.results.map((movie) => {

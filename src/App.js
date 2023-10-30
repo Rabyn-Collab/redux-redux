@@ -15,14 +15,14 @@ const App = () => {
   return (
     <Routes>
       <Route path='/' element={<RootLayOut />} >
-        <Route index element={<SampleHome />} />
-        <Route path='/page/:cata/:pages' element={<PageRoute />} />
+        {/* <Route index element={<SampleHome />} />
+        <Route path='/page/:cata/:pages' element={<PageRoute />} /> */}
 
-        {/* <Route index element={<HomePage />} />
+        <Route index element={<HomePage />} />
         <Route path='movie/:category' element={<CategoryMovie />} />
         <Route path='movie/detail/:id' element={<MovieDetail />} />
         <Route path='movie/search/:query' element={<SearchPage />} />
-        <Route path='movie/page/:category/:page' element={<MoviePage />} /> */}
+        <Route path='movie/page/:category/:page' element={<MoviePage />} />
         <Route path='*' element={<NotFound />} />
 
       </Route>

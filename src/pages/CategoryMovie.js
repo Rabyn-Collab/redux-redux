@@ -11,7 +11,7 @@ const CategoryMovie = () => {
   const nav = useNavigate();
 
   const { isLoading, isError, error, data } = useMovieByCategoryQuery(category ?? 'now_playing');
-
+  console.log(data);
   return (
     <div>
       <CommonMovie isError={isError} isLoading={isLoading} category={category} error={error} data={data} />
